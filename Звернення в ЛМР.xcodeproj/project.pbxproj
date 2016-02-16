@@ -12,6 +12,10 @@
 		43E99B951C649A9700389A52 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43E99B931C649A9700389A52 /* Main.storyboard */; };
 		43E99B971C649A9700389A52 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43E99B961C649A9700389A52 /* Assets.xcassets */; };
 		43E99B9A1C649A9700389A52 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43E99B981C649A9700389A52 /* LaunchScreen.storyboard */; };
+		43E99BA21C649BFD00389A52 /* Mail_Icon_FlatGreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 43E99BA11C649BFD00389A52 /* Mail_Icon_FlatGreen.png */; };
+		43E99BA41C64A3D200389A52 /* SecondStepVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E99BA31C64A3D200389A52 /* SecondStepVC.swift */; };
+		43E99BA61C64B10E00389A52 /* attachement-512.png in Resources */ = {isa = PBXBuildFile; fileRef = 43E99BA51C64B10E00389A52 /* attachement-512.png */; };
+		43E99BA81C64B4D500389A52 /* ThirdVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E99BA71C64B4D500389A52 /* ThirdVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +26,10 @@
 		43E99B961C649A9700389A52 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		43E99B991C649A9700389A52 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		43E99B9B1C649A9700389A52 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		43E99BA11C649BFD00389A52 /* Mail_Icon_FlatGreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Mail_Icon_FlatGreen.png; sourceTree = "<group>"; };
+		43E99BA31C64A3D200389A52 /* SecondStepVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondStepVC.swift; sourceTree = "<group>"; };
+		43E99BA51C64B10E00389A52 /* attachement-512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "attachement-512.png"; sourceTree = "<group>"; };
+		43E99BA71C64B4D500389A52 /* ThirdVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirdVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,8 +66,12 @@
 				43E99B911C649A9700389A52 /* ViewController.swift */,
 				43E99B931C649A9700389A52 /* Main.storyboard */,
 				43E99B961C649A9700389A52 /* Assets.xcassets */,
+				43E99BA11C649BFD00389A52 /* Mail_Icon_FlatGreen.png */,
+				43E99BA51C64B10E00389A52 /* attachement-512.png */,
 				43E99B981C649A9700389A52 /* LaunchScreen.storyboard */,
 				43E99B9B1C649A9700389A52 /* Info.plist */,
+				43E99BA31C64A3D200389A52 /* SecondStepVC.swift */,
+				43E99BA71C64B4D500389A52 /* ThirdVC.swift */,
 			);
 			path = "Звернення в ЛМР";
 			sourceTree = "<group>";
@@ -122,8 +134,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43E99BA21C649BFD00389A52 /* Mail_Icon_FlatGreen.png in Resources */,
 				43E99B9A1C649A9700389A52 /* LaunchScreen.storyboard in Resources */,
 				43E99B971C649A9700389A52 /* Assets.xcassets in Resources */,
+				43E99BA61C64B10E00389A52 /* attachement-512.png in Resources */,
 				43E99B951C649A9700389A52 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -135,8 +149,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43E99BA81C64B4D500389A52 /* ThirdVC.swift in Sources */,
 				43E99B921C649A9700389A52 /* ViewController.swift in Sources */,
 				43E99B901C649A9700389A52 /* AppDelegate.swift in Sources */,
+				43E99BA41C64A3D200389A52 /* SecondStepVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -249,9 +265,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "Звернення в ЛМР/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "lviv.rada.---------------";
+				PRODUCT_BUNDLE_IDENTIFIER = lviv.rada.zvernennya;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -260,9 +277,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "Звернення в ЛМР/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "lviv.rada.---------------";
+				PRODUCT_BUNDLE_IDENTIFIER = lviv.rada.zvernennya;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
