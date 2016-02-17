@@ -9,7 +9,7 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
     @IBOutlet weak var email: UITextField!
     @IBOutlet weak var phone: UITextField!
     @IBOutlet weak var address: UITextField!
@@ -30,7 +30,9 @@ class ViewController: UIViewController {
         } else if lastName == "" {
             
         } else {
-        
+            
+                        
+            
             let secondStepVC = self.storyboard?.instantiateViewControllerWithIdentifier("SecondStepVC")
             self.navigationController?.pushViewController(secondStepVC!, animated: true)
         }
@@ -42,12 +44,12 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
+    
+    
 }
 
