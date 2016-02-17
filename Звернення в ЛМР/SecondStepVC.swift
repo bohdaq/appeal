@@ -52,6 +52,30 @@ class SecondStepVC: UIViewController,UIImagePickerControllerDelegate, UINavigati
             imageView.image = pickedImage
         }
         
+        ApiCaller.login(User(name: "Roman",address: "lviv", email: "proodik@yandex.ru",  phone: "123456123"), completionHandler: {(data, response, error) in
+            
+            guard let _:NSData = data, let _:NSURLResponse = response  where error == nil else {
+                print("error")
+                return
+            }
+            
+            let dataString = NSString(data: data!, encoding: NSUTF8StringEncoding)
+            print(dataString)
+            ApiCaller.sendAppeal(Appeal(categoryId: 1, description: "TEst", isPublic: true, date: Int(NSDate().timeIntervalSince1970), image: self.imageView.image, location: nil), completionHandler: {(data, response, error) in
+                
+                guard let _:NSData = data, let _:NSURLResponse = response  where error == nil else {
+                    print(error?.description)
+                    return
+                }
+                
+                let dataString = NSString(data: data!, encoding: NSUTF8StringEncoding)
+                print("1"+String(dataString))
+                
+            })
+            
+        })
+
+        
         attachPhoto.hidden = true
         dismissViewControllerAnimated(true, completion: nil)
     }
