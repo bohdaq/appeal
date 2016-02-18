@@ -147,6 +147,7 @@
 				TargetAttributes = {
 					43E99B8B1C649A9700389A52 = {
 						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = XD7JHZ5DB3;
 					};
 				};
 			};
@@ -371,7 +372,7 @@
 			baseConfigurationReference = C8ADCEFA98F60411BF78AB54 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				INFOPLIST_FILE = "Звернення в ЛМР/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = lviv.rada.zvernennya;
