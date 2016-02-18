@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftSpinner
 
 class ViewController: UIViewController {
     
@@ -15,6 +16,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var address: UITextField!
     @IBOutlet weak var firstName: UITextField!
     @IBOutlet weak var lastName: UITextField!
+    
+    let user = User.sharedInstance
     
     @IBAction func writeTapped(sender: AnyObject) {
         if email.text == "" {
@@ -30,14 +33,31 @@ class ViewController: UIViewController {
         } else if lastName == "" {
             
         } else {
+            user.email = email.text!
+            user.phone = phone.text!
+            user.address = address.text!
+            user.name = firstName.text! + " " + lastName.text!
             
-                        
-            
-            let secondStepVC = self.storyboard?.instantiateViewControllerWithIdentifier("SecondStepVC")
-            self.navigationController?.pushViewController(secondStepVC!, animated: true)
+            SwiftSpinner.show("Входимо в систему...")
+            ApiCaller.login({(data, response, error) in
+                
+                guard let _:NSData = data, let _:NSURLResponse = response  where error == nil else {
+                    print("error")
+                    return
+                }
+                
+                let dataString = NSString(data: data!, encoding: NSUTF8StringEncoding)
+                print(dataString)
+                
+                dispatch_async(dispatch_get_main_queue(),{ () -> () in
+                    SwiftSpinner.hide()
+                    let secondStepVC = self.storyboard?.instantiateViewControllerWithIdentifier("SecondStepVC")
+                    self.navigationController?.pushViewController(secondStepVC!, animated: true)
+                })
+                
+                
+            })
         }
-        
-        
     }
     
     override func viewDidLoad() {

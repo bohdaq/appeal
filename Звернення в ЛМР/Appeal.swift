@@ -8,17 +8,24 @@
 
 import UIKit
 
-struct Appeal{
+class Appeal{
+    static let sharedInstance = Appeal()
     
-    let categoryId: Int
+    init (){}
     
-    let description: String
+    init (categoryId: Int, description: String, isPublic: Bool, date: Int, image: UIImage, location: String){
+        self.categoryId = categoryId
+        self.description = description
+        self.isPublic = isPublic
+        self.date = date
+        self.image = image
+        self.location = location
+    }
     
-    let isPublic: Bool
-    
-    let date: Int
-    
-    let image: UIImage?
-    
-    let location: String?
+    var categoryId: Int = 1
+    var description: String = ""
+    var isPublic: Bool = true
+    var date: Int = 0
+    var image: UIImage?
+    var location: String?
 }

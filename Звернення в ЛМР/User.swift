@@ -8,13 +8,23 @@
 
 import Foundation
 
-struct User {
+class User {
+    static let sharedInstance = User()
     
-    let name: String
+    init(){}
     
-    let address: String
+    init(name: String, address: String, email: String, phone: String){
+        self.name = name
+        self.address = address
+        self.email = email
+        self.phone = phone
+    }
     
-    let email: String
+    var name: String = ""
     
-    let phone: String
+    var address: String = ""
+    
+    var email: String = ""
+    
+    var phone: String = ""
 }

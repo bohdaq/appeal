@@ -26,9 +26,12 @@ class ApiCaller {
     static private let dateKey = "created_at"
     static private let locationKey = "location"
     
+    static let user = User.sharedInstance
+    static let appeal = Appeal.sharedInstance
     
     
-    static func login(user: User, completionHandler: (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void){
+    
+    static func login(completionHandler: (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void){
         
         let session = NSURLSession.sharedSession()
         
@@ -50,7 +53,7 @@ class ApiCaller {
         
     }
     
-    static func sendAppeal(appeal: Appeal, completionHandler: (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void){
+    static func sendAppeal(completionHandler: (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void){
         
         let session = NSURLSession.sharedSession()
 
