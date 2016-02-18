@@ -101,20 +101,17 @@ class ApiCaller {
             body.appendFormat("Content-Disposition: form-data; name=\"file\"; filename=\"picture.jpg\"\r\n")
             body.appendFormat("Content-Type: image/png\r\n")
             body.appendFormat("Content-Transfer-Encoding: binary\r\n\r\n")
-            
-            
-            
-            
+
         }
         
         requestData.appendData(body.dataUsingEncoding(NSUTF8StringEncoding)!)
         
         if appeal.image != nil {
             requestData.appendData(UIImagePNGRepresentation(appeal.image!)!)
+            requestData.appendData("\r\n".dataUsingEncoding(NSUTF8StringEncoding)!)
         }
-        requestData.appendData("\r\n\(endBoundary)".dataUsingEncoding(NSUTF8StringEncoding)!)
-        
-        
+        requestData.appendData("\(endBoundary)".dataUsingEncoding(NSUTF8StringEncoding)!)
+                
         let content:String = "multipart/form-data; beginBoundary=\(boundary)"
         request.setValue(content, forHTTPHeaderField: "Content-Type")
         request.setValue("\(requestData.length)", forHTTPHeaderField: "Content-Length")
