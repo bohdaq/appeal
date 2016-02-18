@@ -13,4 +13,9 @@ class ThirdVC: UIViewController {
         super.viewDidLoad()
         self.navigationItem.setHidesBackButton(true, animated: false)
     }
+    
+    @IBAction func doneTapped(sender: AnyObject) {
+        let initVC = self.storyboard?.instantiateViewControllerWithIdentifier("ViewController")
+        self.navigationController?.pushViewController(initVC!, animated: true)
+    }
 }

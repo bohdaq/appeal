@@ -9,7 +9,7 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Звернення_в_ЛМР" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="ViewController" customModule="Звернення_в_ЛМР" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -128,21 +128,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wop-yE-eMd">
-                                <rect key="frame" x="0.0" y="64" width="320" height="216"/>
-                                <connections>
-                                    <outlet property="dataSource" destination="keh-yL-Qj1" id="UNL-rf-sJ7"/>
-                                    <outlet property="delegate" destination="keh-yL-Qj1" id="Nlf-GJ-c2u"/>
-                                </connections>
-                            </pickerView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NOi-at-VDc">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NOi-at-VDc">
                                 <rect key="frame" x="51" y="424" width="240" height="128"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="128" id="VIL-DI-G6v"/>
-                                    <constraint firstAttribute="width" constant="240" id="xfe-qe-zqw"/>
+                                    <constraint firstAttribute="height" constant="128" id="Gm0-wL-iJk"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YNN-Qq-mrM">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YNN-Qq-mrM">
                                 <rect key="frame" x="89" y="522" width="143" height="30"/>
                                 <state key="normal" title="Прикріпити Фото">
                                     <color key="titleShadowColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -151,19 +143,36 @@
                                     <action selector="attachPhotoTapped:" destination="keh-yL-Qj1" eventType="touchUpInside" id="0RM-Hn-Ejm"/>
                                 </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Введіть текст звернення" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="gXZ-On-mHz">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Введіть текст звернення" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="gXZ-On-mHz">
                                 <rect key="frame" x="51" y="288" width="240" height="128"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wop-yE-eMd">
+                                <rect key="frame" x="0.0" y="64" width="320" height="216"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="keh-yL-Qj1" id="UNL-rf-sJ7"/>
+                                    <outlet property="delegate" destination="keh-yL-Qj1" id="Nlf-GJ-c2u"/>
+                                </connections>
+                            </pickerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="tGz-EC-EVt" firstAttribute="top" secondItem="NOi-at-VDc" secondAttribute="bottom" constant="16" id="4ew-b0-7Oi"/>
-                            <constraint firstItem="YNN-Qq-mrM" firstAttribute="centerX" secondItem="3RM-cv-1Za" secondAttribute="centerX" id="JpV-Fd-iUu"/>
-                            <constraint firstItem="NOi-at-VDc" firstAttribute="centerX" secondItem="3RM-cv-1Za" secondAttribute="centerX" id="NdR-mb-rhk"/>
-                            <constraint firstItem="tGz-EC-EVt" firstAttribute="top" secondItem="YNN-Qq-mrM" secondAttribute="bottom" constant="16" id="gGm-1F-ozQ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="NOi-at-VDc" secondAttribute="trailing" constant="13" id="0cH-9I-0Se"/>
+                            <constraint firstItem="NOi-at-VDc" firstAttribute="trailing" secondItem="gXZ-On-mHz" secondAttribute="trailing" id="2eB-Hr-bUp"/>
+                            <constraint firstItem="NOi-at-VDc" firstAttribute="top" secondItem="gXZ-On-mHz" secondAttribute="bottom" constant="8" id="4Da-2j-jpZ"/>
+                            <constraint firstItem="NOi-at-VDc" firstAttribute="leading" secondItem="gXZ-On-mHz" secondAttribute="leading" id="Gh5-yr-xDl"/>
+                            <constraint firstItem="Wop-yE-eMd" firstAttribute="centerX" secondItem="3RM-cv-1Za" secondAttribute="centerX" id="PU3-2Z-Me6"/>
+                            <constraint firstItem="NOi-at-VDc" firstAttribute="leading" secondItem="3RM-cv-1Za" secondAttribute="leadingMargin" constant="35" id="RPs-hH-dWb"/>
+                            <constraint firstItem="YNN-Qq-mrM" firstAttribute="leading" secondItem="3RM-cv-1Za" secondAttribute="leadingMargin" constant="73" id="S7h-77-TvK"/>
+                            <constraint firstItem="Wop-yE-eMd" firstAttribute="top" secondItem="sP0-NX-jDY" secondAttribute="bottom" id="XmJ-Xo-QPA"/>
+                            <constraint firstItem="tGz-EC-EVt" firstAttribute="top" secondItem="YNN-Qq-mrM" secondAttribute="bottom" constant="16" id="ZRT-le-8Rz"/>
+                            <constraint firstItem="NOi-at-VDc" firstAttribute="top" secondItem="gXZ-On-mHz" secondAttribute="bottom" constant="8" symbolic="YES" id="ffF-9z-Qc7"/>
+                            <constraint firstItem="YNN-Qq-mrM" firstAttribute="centerX" secondItem="3RM-cv-1Za" secondAttribute="centerX" id="lFh-7T-C6D"/>
+                            <constraint firstItem="YNN-Qq-mrM" firstAttribute="bottom" secondItem="NOi-at-VDc" secondAttribute="bottom" id="vGU-9N-arT"/>
+                            <constraint firstItem="YNN-Qq-mrM" firstAttribute="centerX" secondItem="Wop-yE-eMd" secondAttribute="centerX" id="wfd-6D-N0n"/>
+                            <constraint firstItem="gXZ-On-mHz" firstAttribute="top" secondItem="Wop-yE-eMd" secondAttribute="bottom" constant="8" symbolic="YES" id="zxs-qb-CD1"/>
                         </constraints>
                     </view>
                     <toolbarItems>
@@ -226,7 +235,11 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="YbE-8z-aOm">
-                        <barButtonItem key="rightBarButtonItem" title="Готово" id="9y6-PR-axj"/>
+                        <barButtonItem key="rightBarButtonItem" title="Готово" id="9y6-PR-axj">
+                            <connections>
+                                <action selector="doneTapped:" destination="gAE-9K-fNK" id="Xzm-fM-Ipb"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>

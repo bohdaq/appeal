@@ -25,7 +25,7 @@ class Appeal{
     var categoryId: Int = 1
     var description: String = ""
     var isPublic: Bool = true
-    var date: Int = 0
+    var date: Int = Int(NSDate().timeIntervalSince1970)
     var image: UIImage?
     var location: String?
 }

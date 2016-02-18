@@ -18,7 +18,9 @@ class SecondStepVC: UIViewController,UIImagePickerControllerDelegate, UINavigati
     let appeal = Appeal.sharedInstance
     
     let imagePicker = UIImagePickerController()
-    let categories = ["Адміністративні послуги", "Містобудування та інфраструктура", "Соціальний захист", "Житловокомунальне господарство", "Юридична консультація", "Транспорт і зв'язок"]
+    let mapping: [String: Int] = ["Житловокомунальне господарство": 1, "Юридична консультація": 2, "Транспорт і зв'язок": 3, "Містобудування та інфраструктура": 4, "Соціальний захист": 5, "Діти": 6, "Адміністративні послуги": 7, "Будівництво і реконструкція": 8, "Земля": 9, "Оренда майна": 10, "Рекламна вивіска": 11, "Літні майданчики, МАФи": 12]
+    
+    let categories = ["Житловокомунальне господарство", "Юридична консультація", "Транспорт і зв'язок", "Містобудування та інфраструктура", "Соціальний захист", "Діти", "Адміністративні послуги", "Будівництво і реконструкція", "Земля", "Оренда майна", "Рекламна вивіска", "Літні майданчики, МАФи"]
     
     @IBAction func attachPhotoTapped(sender: AnyObject) {
         imagePicker.allowsEditing = false
@@ -42,18 +44,25 @@ class SecondStepVC: UIViewController,UIImagePickerControllerDelegate, UINavigati
                 print(error?.description)
                 return
             }
+            
+            //TODO: check if HTTP RESPONSE CODE is 200
+            // if so - try to parse json and get the status field
+            // if status true - perform seque to ThirdVC
+            // ----
+            // handle all edge cases
+            // 1. Send appeal without a photo attached now causing error. Figure out why and fix.
+            // 2. Handle server exceptions (500 errors)
+            // 3. Handle status false backend response
                 
             let dataString = NSString(data: data!, encoding: NSUTF8StringEncoding)
-            print("1"+String(dataString))
+            print(String(dataString))
             
-            dispatch_async(dispatch_get_main_queue(),{ () -> () in
+            dispatch_async(dispatch_get_main_queue()) { [] in
                 SwiftSpinner.hide()
                 let thirdVC = self.storyboard?.instantiateViewControllerWithIdentifier("ThirdVC")
                 self.navigationController?.pushViewController(thirdVC!, animated: true)
-            })
-
+            }
         })
-        
     }
     
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
@@ -65,13 +74,12 @@ class SecondStepVC: UIViewController,UIImagePickerControllerDelegate, UINavigati
     }
     
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
-        categoryId = row
+        categoryId = mapping[categories[row]]
         return categories[row]
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "Yfof", style:  .Plain, target: nil, action: nil)
         imagePicker.delegate = self
     }
     

@@ -19,19 +19,23 @@ class ViewController: UIViewController {
     
     let user = User.sharedInstance
     
+    func showAlert(msg: String){
+        SwiftSpinner.show("Введіть " + msg, animated: false).addTapHandler ({
+            SwiftSpinner.hide()
+        })
+    }
+    
     @IBAction func writeTapped(sender: AnyObject) {
-        if email.text == "" {
-            
-        } else if phone.text == "" {
-            
+        if firstName.text == "" {
+            showAlert("ім'я")
+        } else if lastName.text == "" {
+            showAlert("прізвище")
         } else if address.text == "" {
-            
-        } else if firstName.text == "" {
-            
-        } else if firstName.text == "" {
-            
-        } else if lastName == "" {
-            
+            showAlert("адресу")
+        } else if phone.text == "" {
+            showAlert("телефон")
+        } else if email.text == "" {
+            showAlert("email")
         } else {
             user.email = email.text!
             user.phone = phone.text!
@@ -62,14 +66,8 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        self.navigationItem.setHidesBackButton(true, animated: false)
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     
 }
 
