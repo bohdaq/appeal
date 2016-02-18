@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		43179A801C765C870042CE70 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43179A7F1C765C870042CE70 /* String.swift */; };
 		43E99B901C649A9700389A52 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E99B8F1C649A9700389A52 /* AppDelegate.swift */; };
 		43E99B921C649A9700389A52 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E99B911C649A9700389A52 /* ViewController.swift */; };
 		43E99B951C649A9700389A52 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43E99B931C649A9700389A52 /* Main.storyboard */; };
@@ -25,6 +26,7 @@
 
 /* Begin PBXFileReference section */
 		3B426A9B2C11274B6649B6AA /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		43179A7F1C765C870042CE70 /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		43E99B8C1C649A9700389A52 /* Звернення в ЛМР.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Звернення в ЛМР.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		43E99B8F1C649A9700389A52 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		43E99B911C649A9700389A52 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -91,6 +93,7 @@
 				43E99BA71C64B4D500389A52 /* ThirdVC.swift */,
 				834DAA551C74D1AE002C870F /* Appeal.swift */,
 				834DAA571C74D629002C870F /* ApiCaller.swift */,
+				43179A7F1C765C870042CE70 /* String.swift */,
 			);
 			path = "Звернення в ЛМР";
 			sourceTree = "<group>";
@@ -240,6 +243,7 @@
 				43E99BA81C64B4D500389A52 /* ThirdVC.swift in Sources */,
 				834DAA541C74D18B002C870F /* DataManager.swift in Sources */,
 				834DAA561C74D1AE002C870F /* Appeal.swift in Sources */,
+				43179A801C765C870042CE70 /* String.swift in Sources */,
 				43E99B921C649A9700389A52 /* ViewController.swift in Sources */,
 				43E99B901C649A9700389A52 /* AppDelegate.swift in Sources */,
 				834DAA501C74D0DE002C870F /* User.swift in Sources */,

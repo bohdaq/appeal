@@ -70,16 +70,16 @@ class ViewController: UIViewController {
     }
     
     func decideEnableNext(){
-        if firstName.text == "" {
-            logMissingField("ім'я")
-        } else if lastName.text == "" {
-            logMissingField("прізвище")
-        } else if address.text == "" {
-            logMissingField("адресу")
-        } else if phone.text == "" {
-            logMissingField("телефон")
-        } else if email.text == "" {
-            logMissingField("email")
+        if firstName.text!.isBlank {
+            nextBtn.enabled = false
+        } else if lastName.text!.isBlank {
+            nextBtn.enabled = false
+        } else if address.text!.isBlank {
+            nextBtn.enabled = false
+        } else if phone.text!.isBlank || !phone.text!.isPhoneNumber {
+            nextBtn.enabled = false
+        } else if email.text!.isBlank || !email.text!.isEmail {
+            nextBtn.enabled = false
         } else {
             nextBtn.enabled = true
         }
