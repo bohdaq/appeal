@@ -81,6 +81,9 @@ class SecondStepVC: UIViewController,UIImagePickerControllerDelegate, UINavigati
     override func viewDidLoad() {
         super.viewDidLoad()
         imagePicker.delegate = self
+        
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+        view.addGestureRecognizer(tap)
     }
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
@@ -97,5 +100,7 @@ class SecondStepVC: UIViewController,UIImagePickerControllerDelegate, UINavigati
         dismissViewControllerAnimated(true, completion: nil)
     }
     
-    
+    func dismissKeyboard() {
+        view.endEditing(true)
+    }
 }

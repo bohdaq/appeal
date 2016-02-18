@@ -16,57 +16,87 @@ class ViewController: UIViewController {
     @IBOutlet weak var address: UITextField!
     @IBOutlet weak var firstName: UITextField!
     @IBOutlet weak var lastName: UITextField!
+    @IBOutlet weak var nextBtn: UIBarButtonItem!
     
     let user = User.sharedInstance
     
-    func showAlert(msg: String){
-        SwiftSpinner.show("Введіть " + msg, animated: false).addTapHandler ({
-            SwiftSpinner.hide()
-        })
+    func logMissingField(msg: String){
+        print("Введіть " + msg)
+    }
+    
+    @IBAction func firstNameTapped(sender: AnyObject) {
+        decideEnableNext()
+    }
+    
+    @IBAction func lastNameTapped(sender: AnyObject) {
+        decideEnableNext()
+    }
+    
+    @IBAction func addressTapped(sender: AnyObject) {
+        decideEnableNext()
+    }
+    
+    @IBAction func phoneTapped(sender: AnyObject) {
+        decideEnableNext()
+    }
+    
+    @IBAction func emailTapped(sender: AnyObject) {
+        decideEnableNext()
     }
     
     @IBAction func writeTapped(sender: AnyObject) {
-        if firstName.text == "" {
-            showAlert("ім'я")
-        } else if lastName.text == "" {
-            showAlert("прізвище")
-        } else if address.text == "" {
-            showAlert("адресу")
-        } else if phone.text == "" {
-            showAlert("телефон")
-        } else if email.text == "" {
-            showAlert("email")
-        } else {
-            user.email = email.text!
-            user.phone = phone.text!
-            user.address = address.text!
-            user.name = firstName.text! + " " + lastName.text!
+        user.email = email.text!
+        user.phone = phone.text!
+        user.address = address.text!
+        user.name = firstName.text! + " " + lastName.text!
             
-            SwiftSpinner.show("Входимо в систему...")
-            ApiCaller.login({(data, response, error) in
+        SwiftSpinner.show("Входимо в систему...")
+        ApiCaller.login({(data, response, error) in
                 
-                guard let _:NSData = data, let _:NSURLResponse = response  where error == nil else {
+            guard let _:NSData = data, let _:NSURLResponse = response  where error == nil else {
                     print("error")
                     return
                 }
                 
-                let dataString = NSString(data: data!, encoding: NSUTF8StringEncoding)
+            let dataString = NSString(data: data!, encoding: NSUTF8StringEncoding)
                 print(dataString)
                 
-                dispatch_async(dispatch_get_main_queue(),{ () -> () in
-                    SwiftSpinner.hide()
-                    let secondStepVC = self.storyboard?.instantiateViewControllerWithIdentifier("SecondStepVC")
+            dispatch_async(dispatch_get_main_queue(),{ () -> () in
+                SwiftSpinner.hide()
+                let secondStepVC = self.storyboard?.instantiateViewControllerWithIdentifier("SecondStepVC")
                     self.navigationController?.pushViewController(secondStepVC!, animated: true)
                 })
-                
-                
             })
+    }
+    
+    func decideEnableNext(){
+        if firstName.text == "" {
+            logMissingField("ім'я")
+        } else if lastName.text == "" {
+            logMissingField("прізвище")
+        } else if address.text == "" {
+            logMissingField("адресу")
+        } else if phone.text == "" {
+            logMissingField("телефон")
+        } else if email.text == "" {
+            logMissingField("email")
+        } else {
+            nextBtn.enabled = true
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.setHidesBackButton(true, animated: false)
+        
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+        view.addGestureRecognizer(tap)
+        
+        nextBtn.enabled = false
+    }
+    
+    func dismissKeyboard() {
+        view.endEditing(true)
     }
     
 }
