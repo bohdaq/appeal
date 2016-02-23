@@ -45,28 +45,31 @@ class ViewController: UIViewController {
     }
     
     @IBAction func writeTapped(sender: AnyObject) {
+        
         user.email = email.text!
         user.phone = phone.text!
         user.address = address.text!
         user.name = firstName.text! + " " + lastName.text!
-            
+        
+        user.saveUser()
+        
         SwiftSpinner.show("Входимо в систему...")
         ApiCaller.login({(data, response, error) in
-                
+            
             guard let _:NSData = data, let _:NSURLResponse = response  where error == nil else {
-                    print("error")
-                    return
-                }
-                
+                print("error")
+                return
+            }
+            
             let dataString = NSString(data: data!, encoding: NSUTF8StringEncoding)
-                print(dataString)
-                
+            print(dataString)
+            
             dispatch_async(dispatch_get_main_queue(),{ () -> () in
                 SwiftSpinner.hide()
                 let secondStepVC = self.storyboard?.instantiateViewControllerWithIdentifier("SecondStepVC")
-                    self.navigationController?.pushViewController(secondStepVC!, animated: true)
-                })
+                self.navigationController?.pushViewController(secondStepVC!, animated: true)
             })
+        })
     }
     
     func decideEnableNext(){
@@ -85,6 +88,24 @@ class ViewController: UIViewController {
         }
     }
     
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(true)
+        
+        if user.getUser() == nil {
+            nextBtn.enabled = false
+        } else {
+            firstName.text = user.name.componentsSeparatedByString(" ")[0]
+            lastName.text = user.name.componentsSeparatedByString(" ")[1]
+            if user.address != "" {
+                address.text = user.address
+            }
+            phone.text = user.phone
+            email.text = user.email
+        }
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.setHidesBackButton(true, animated: false)
@@ -92,7 +113,6 @@ class ViewController: UIViewController {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
         view.addGestureRecognizer(tap)
         
-        nextBtn.enabled = false
     }
     
     func dismissKeyboard() {
