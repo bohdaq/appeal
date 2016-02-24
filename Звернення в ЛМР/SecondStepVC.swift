@@ -8,7 +8,7 @@
 import UIKit
 import SwiftSpinner
 
-class SecondStepVC: UIViewController,UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class SecondStepVC: UIViewController,UIImagePickerControllerDelegate, UINavigationControllerDelegate,  UITextFieldDelegate, UITextViewDelegate {
     @IBOutlet weak var picker: UIPickerView!
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var attachPhoto: UIButton!
@@ -17,10 +17,12 @@ class SecondStepVC: UIViewController,UIImagePickerControllerDelegate, UINavigati
     
     let appeal = Appeal.sharedInstance
     
+    var keyboardIsShown = false
+    
     let imagePicker = UIImagePickerController()
     let mapping: [String: Int] = ["Житловокомунальне господарство": 1, "Юридична консультація": 2, "Транспорт і зв'язок": 3, "Містобудування та інфраструктура": 4, "Соціальний захист": 5, "Діти": 6, "Адміністративні послуги": 7, "Будівництво і реконструкція": 8, "Земля": 9, "Оренда майна": 10, "Рекламна вивіска": 11, "Літні майданчики, МАФи": 12]
     
-    let categories = ["Житловокомунальне господарство", "Юридична консультація", "Транспорт і зв'язок", "Містобудування та інфраструктура", "Соціальний захист", "Діти", "Адміністративні послуги", "Будівництво і реконструкція", "Земля", "Оренда майна", "Рекламна вивіска", "Літні майданчики, МАФи"]
+    let categories = ["Житловокомунальне господарство", "Юридична консультація", "Транспорт і зв'язок", "Містобудування та інфраструктура", "Соціальний захист", "Діти", "Адміністративні послуги", "Будівництво і реконструкція", "Земля", "Оренда майна", "Рекламна вивіска", "Літні майданчики, МАФи", "Інше"]
     
     @IBAction func attachPhotoTapped(sender: AnyObject) {
         imagePicker.allowsEditing = false
@@ -73,6 +75,7 @@ class SecondStepVC: UIViewController,UIImagePickerControllerDelegate, UINavigati
     override func viewDidLoad() {
         super.viewDidLoad()
         imagePicker.delegate = self
+        textView.delegate = self
         
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
         view.addGestureRecognizer(tap)
@@ -95,4 +98,37 @@ class SecondStepVC: UIViewController,UIImagePickerControllerDelegate, UINavigati
     func dismissKeyboard() {
         view.endEditing(true)
     }
+    
+    func keyboardWillShow(notification: NSNotification) {
+        
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
+            if !keyboardIsShown {
+                keyboardIsShown = true
+                self.view.frame.origin.y -= keyboardSize.height
+            }
+        }
+        
+    }
+    
+    func keyboardWillHide(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
+            self.view.frame.origin.y += keyboardSize.height
+            keyboardIsShown = false
+        }
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {   //delegate method
+        dismissKeyboard()
+        return true
+    }
+    
+    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+        if text == "\n" {
+            textView.resignFirstResponder()
+            return false
+            //return true
+        }
+        return true
+    }
+    
 }

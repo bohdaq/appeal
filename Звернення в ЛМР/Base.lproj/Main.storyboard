@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="14F1605" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Elc-XV-PfK">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Elc-XV-PfK">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -19,21 +19,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MNS-Kf-4s0">
-                                <rect key="frame" x="20" y="115" width="281" height="337"/>
+                                <rect key="frame" x="15" y="115" width="289" height="401"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Прізвище" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="48h-2i-JcP">
-                                        <rect key="frame" x="43" y="193" width="194" height="30"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="194" id="psH-wE-Z8L"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                        <connections>
-                                            <action selector="lastNameTapped:" destination="BYZ-38-t0r" eventType="editingChanged" id="eA3-TQ-qu9"/>
-                                        </connections>
-                                    </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Адреса" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vGZ-g1-NAC">
-                                        <rect key="frame" x="43" y="231" width="194" height="30"/>
+                                        <rect key="frame" x="48" y="287" width="194" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="194" id="CMX-OL-caQ"/>
                                         </constraints>
@@ -44,18 +33,18 @@
                                         </connections>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Телефон" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TBa-wq-7px">
-                                        <rect key="frame" x="43" y="269" width="194" height="30"/>
+                                        <rect key="frame" x="48" y="325" width="194" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="194" id="kSr-jA-x1J"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
+                                        <textInputTraits key="textInputTraits"/>
                                         <connections>
                                             <action selector="phoneTapped:" destination="BYZ-38-t0r" eventType="editingChanged" id="GEd-SS-Jle"/>
                                         </connections>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xA1-8g-2do">
-                                        <rect key="frame" x="43" y="307" width="194" height="30"/>
+                                        <rect key="frame" x="48" y="363" width="194" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="194" id="zga-pk-vwG"/>
                                         </constraints>
@@ -66,14 +55,10 @@
                                         </connections>
                                     </textField>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Mail_Icon_FlatGreen.png" translatesAutoresizingMaskIntoConstraints="NO" id="yBV-3X-48p">
-                                        <rect key="frame" x="43" y="0.0" width="194" height="147"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="147" id="0TK-Aw-bB9"/>
-                                            <constraint firstAttribute="width" constant="194" id="bMe-WM-OLd"/>
-                                        </constraints>
+                                        <rect key="frame" x="48" y="0.0" width="194" height="147"/>
                                     </imageView>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ім'я" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="c1C-1u-xZa">
-                                        <rect key="frame" x="43" y="154" width="194" height="30"/>
+                                        <rect key="frame" x="48" y="211" width="194" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="194" id="lBH-gb-c4H"/>
                                         </constraints>
@@ -83,31 +68,65 @@
                                             <action selector="firstNameTapped:" destination="BYZ-38-t0r" eventType="editingChanged" id="6Vh-nN-SZj"/>
                                         </connections>
                                     </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Прізвище" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="48h-2i-JcP">
+                                        <rect key="frame" x="48" y="249" width="194" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="194" id="psH-wE-Z8L"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="lastNameTapped:" destination="BYZ-38-t0r" eventType="editingChanged" id="eA3-TQ-qu9"/>
+                                        </connections>
+                                    </textField>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="c1C-1u-xZa" firstAttribute="centerY" secondItem="MNS-Kf-4s0" secondAttribute="centerY" id="5LJ-IK-9l4"/>
+                                    <constraint firstItem="yBV-3X-48p" firstAttribute="leading" secondItem="vGZ-g1-NAC" secondAttribute="leading" id="14p-IA-XNg"/>
+                                    <constraint firstItem="yBV-3X-48p" firstAttribute="top" secondItem="MNS-Kf-4s0" secondAttribute="top" id="4Hv-iK-dc2"/>
+                                    <constraint firstItem="c1C-1u-xZa" firstAttribute="centerY" secondItem="MNS-Kf-4s0" secondAttribute="centerY" constant="25.5" id="5LJ-IK-9l4"/>
+                                    <constraint firstItem="yBV-3X-48p" firstAttribute="leading" secondItem="xA1-8g-2do" secondAttribute="leading" id="Enj-Hh-WjX"/>
                                     <constraint firstItem="c1C-1u-xZa" firstAttribute="centerX" secondItem="MNS-Kf-4s0" secondAttribute="centerX" id="ISt-tC-c9b"/>
-                                    <constraint firstItem="48h-2i-JcP" firstAttribute="top" secondItem="c1C-1u-xZa" secondAttribute="bottom" constant="9" id="LVC-dv-gb7"/>
+                                    <constraint firstItem="48h-2i-JcP" firstAttribute="top" secondItem="c1C-1u-xZa" secondAttribute="bottom" constant="8" id="LVC-dv-gb7"/>
                                     <constraint firstItem="vGZ-g1-NAC" firstAttribute="top" secondItem="48h-2i-JcP" secondAttribute="bottom" constant="8" id="M4D-ot-75V"/>
                                     <constraint firstItem="48h-2i-JcP" firstAttribute="centerX" secondItem="MNS-Kf-4s0" secondAttribute="centerX" id="R4F-GW-FHt"/>
-                                    <constraint firstItem="yBV-3X-48p" firstAttribute="centerX" secondItem="MNS-Kf-4s0" secondAttribute="centerX" id="diS-iU-ROp"/>
+                                    <constraint firstItem="c1C-1u-xZa" firstAttribute="top" secondItem="yBV-3X-48p" secondAttribute="bottom" constant="64" id="TK1-HB-PYs"/>
+                                    <constraint firstItem="yBV-3X-48p" firstAttribute="trailing" secondItem="c1C-1u-xZa" secondAttribute="trailing" id="bnI-cR-sbZ"/>
+                                    <constraint firstItem="yBV-3X-48p" firstAttribute="leading" secondItem="48h-2i-JcP" secondAttribute="leading" id="cpI-fn-FwD"/>
+                                    <constraint firstItem="yBV-3X-48p" firstAttribute="trailing" secondItem="c1C-1u-xZa" secondAttribute="trailing" id="hKS-6M-XuW"/>
                                     <constraint firstItem="TBa-wq-7px" firstAttribute="centerX" secondItem="MNS-Kf-4s0" secondAttribute="centerX" id="hTK-IN-9qB"/>
+                                    <constraint firstItem="yBV-3X-48p" firstAttribute="leading" secondItem="MNS-Kf-4s0" secondAttribute="leading" constant="43" id="ips-W5-WO1"/>
+                                    <constraint firstItem="yBV-3X-48p" firstAttribute="centerX" secondItem="MNS-Kf-4s0" secondAttribute="centerX" id="khX-Dg-Hgd"/>
                                     <constraint firstItem="TBa-wq-7px" firstAttribute="top" secondItem="vGZ-g1-NAC" secondAttribute="bottom" constant="8" id="ogP-vY-OZe"/>
-                                    <constraint firstItem="yBV-3X-48p" firstAttribute="top" secondItem="MNS-Kf-4s0" secondAttribute="top" id="prd-ce-JOn"/>
                                     <constraint firstItem="xA1-8g-2do" firstAttribute="centerX" secondItem="MNS-Kf-4s0" secondAttribute="centerX" id="r3t-BR-uLF"/>
+                                    <constraint firstItem="yBV-3X-48p" firstAttribute="leading" secondItem="TBa-wq-7px" secondAttribute="leading" id="tSR-b9-vzx"/>
+                                    <constraint firstItem="yBV-3X-48p" firstAttribute="leading" secondItem="c1C-1u-xZa" secondAttribute="leading" id="usu-Bu-w8j"/>
                                     <constraint firstItem="xA1-8g-2do" firstAttribute="top" secondItem="TBa-wq-7px" secondAttribute="bottom" constant="8" id="xLG-7h-D3h"/>
                                     <constraint firstItem="vGZ-g1-NAC" firstAttribute="centerX" secondItem="MNS-Kf-4s0" secondAttribute="centerX" id="zaA-lv-UPi"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="hKS-6M-XuW"/>
+                                        <exclude reference="ips-W5-WO1"/>
+                                        <exclude reference="khX-Dg-Hgd"/>
+                                        <exclude reference="usu-Bu-w8j"/>
+                                    </mask>
+                                </variation>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="MNS-Kf-4s0" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="YYV-BL-qMW"/>
+                            <constraint firstItem="MNS-Kf-4s0" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="31.5" id="YYV-BL-qMW"/>
                             <constraint firstItem="MNS-Kf-4s0" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="51" id="agR-ca-9AL"/>
-                            <constraint firstItem="MNS-Kf-4s0" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="4" id="eHZ-Y5-dmC"/>
+                            <constraint firstItem="MNS-Kf-4s0" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-1" id="eHZ-Y5-dmC"/>
                             <constraint firstItem="MNS-Kf-4s0" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="rjU-X8-Kux"/>
+                            <constraint firstItem="MNS-Kf-4s0" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="wbn-xw-pUY"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="rjU-X8-Kux"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="h3t-3r-BEv">
                         <barButtonItem key="backBarButtonItem" title="Назад" id="0Ys-6m-DbS"/>
