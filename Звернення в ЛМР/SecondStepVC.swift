@@ -35,35 +35,27 @@ class SecondStepVC: UIViewController,UIImagePickerControllerDelegate, UINavigati
         appeal.isPublic = true
         appeal.date = Int(NSDate().timeIntervalSince1970)
         appeal.image = self.imageView.image
-
+        
         SwiftSpinner.show("Надсилаємо звернення (може зайняти декілька хвилин)...")
-
-        ApiCaller.sendAppeal({(data, response, error) in
-                
-            guard let _:NSData = data, let _:NSURLResponse = response  where error == nil else {
-                print(error?.description)
-                return
-            }
-            
-            //TODO: check if HTTP RESPONSE CODE is 200
-            // if so - try to parse json and get the status field
-            // if status true - perform seque to ThirdVC
-            // ----
-            // handle all edge cases
-            // 1. Send appeal without a photo attached now causing error. Figure out why and fix.
-            // 2. Handle server exceptions (500 errors)
-            // 3. Handle status false backend response
-                
-            let dataString = NSString(data: data!, encoding: NSUTF8StringEncoding)
-            print(String(dataString))
-            
-            dispatch_async(dispatch_get_main_queue()) { [] in
+        
+        ApiCaller.sendAppeal({
+            dispatch_async(dispatch_get_main_queue()) {
                 SwiftSpinner.hide()
                 let thirdVC = self.storyboard?.instantiateViewControllerWithIdentifier("ThirdVC")
                 self.navigationController?.pushViewController(thirdVC!, animated: true)
             }
+            }, onErrorCallback: {
+                SwiftSpinner.hide()
+                let refreshAlert = UIAlertController(title: "Error", message: "Some error occured!", preferredStyle: UIAlertControllerStyle.Alert)
+                
+                refreshAlert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: { (action: UIAlertAction!) in
+                    
+                }))
+                
+                self.presentViewController(refreshAlert, animated: true, completion: nil)
         })
     }
+    
     
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
         return 1

@@ -8,8 +8,10 @@
 
 import UIKit
 import SwiftSpinner
+import SwiftyJSON
 
-class ViewController: UIViewController {
+
+class ViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var email: UITextField!
     @IBOutlet weak var phone: UITextField!
@@ -17,6 +19,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var firstName: UITextField!
     @IBOutlet weak var lastName: UITextField!
     @IBOutlet weak var nextBtn: UIBarButtonItem!
+    
+    var keyboardIsShown = false
     
     let user = User.sharedInstance
     
@@ -54,21 +58,23 @@ class ViewController: UIViewController {
         user.saveUser()
         
         SwiftSpinner.show("Входимо в систему...")
-        ApiCaller.login({(data, response, error) in
-            
-            guard let _:NSData = data, let _:NSURLResponse = response  where error == nil else {
-                print("error")
-                return
-            }
-            
-            let dataString = NSString(data: data!, encoding: NSUTF8StringEncoding)
-            print(dataString)
+        ApiCaller.login({
             
             dispatch_async(dispatch_get_main_queue(),{ () -> () in
                 SwiftSpinner.hide()
                 let secondStepVC = self.storyboard?.instantiateViewControllerWithIdentifier("SecondStepVC")
                 self.navigationController?.pushViewController(secondStepVC!, animated: true)
             })
+            }, onErrorCallback: {
+                SwiftSpinner.hide()
+                let refreshAlert = UIAlertController(title: "Error", message: "Some error occured!", preferredStyle: UIAlertControllerStyle.Alert)
+                
+                refreshAlert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: { (action: UIAlertAction!) in
+                    
+                }))
+                
+                self.presentViewController(refreshAlert, animated: true, completion: nil)
+                
         })
     }
     
@@ -104,6 +110,8 @@ class ViewController: UIViewController {
             email.text = user.email
         }
         
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name: UIKeyboardWillHideNotification, object: nil)
     }
     
     override func viewDidLoad() {
@@ -113,10 +121,40 @@ class ViewController: UIViewController {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
         view.addGestureRecognizer(tap)
         
+        firstName.delegate = self
+        lastName.delegate = self
+        address.delegate = self
+        email.delegate = self
+        
     }
     
     func dismissKeyboard() {
         view.endEditing(true)
+    }
+    
+    
+    func keyboardWillShow(notification: NSNotification) {
+        
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
+            if !keyboardIsShown {
+                keyboardIsShown = true
+                self.view.frame.origin.y -= keyboardSize.height
+            }
+        }
+        
+    }
+    
+    func keyboardWillHide(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
+            self.view.frame.origin.y += keyboardSize.height
+            keyboardIsShown = false
+        }
+    }
+    
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {   //delegate method
+        dismissKeyboard()
+        return true
     }
     
 }

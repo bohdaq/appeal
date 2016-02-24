@@ -4,3 +4,4 @@ use_frameworks!
 
 pod "SwiftSpinner"
 pod "KMPlaceholderTextView"
+pod 'SwiftyJSON', :git => 'https://github.com/SwiftyJSON/SwiftyJSON.git'
