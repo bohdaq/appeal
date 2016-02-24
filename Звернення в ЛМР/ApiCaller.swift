@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class ApiCaller {
     
@@ -26,12 +27,16 @@ class ApiCaller {
     static private let dateKey = "created_at"
     static private let locationKey = "location"
     
+    static private let JSONStatusKey = "status"
+    
+    static private let OKStatusCode = 200
+    
     static let user = User.sharedInstance
     static let appeal = Appeal.sharedInstance
     
     
     
-    static func login(completionHandler: (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void){
+    static func login(onSuccessCallback: () -> Void, onErrorCallback: () -> Void){
         
         let session = NSURLSession.sharedSession()
         
@@ -46,17 +51,38 @@ class ApiCaller {
         
         let data = dataString.dataUsingEncoding(NSUTF8StringEncoding)
         
-        let task = session.uploadTaskWithRequest(request, fromData: data, completionHandler:completionHandler);
+        let task = session.uploadTaskWithRequest(request, fromData: data, completionHandler:{(data, response, error) in
+            
+            guard let _:NSData = data, let _:NSURLResponse = response  where error == nil else {
+                onErrorCallback()
+                return
+            }
+            
+            let response = response as! NSHTTPURLResponse
+            let statusCode = response.statusCode
+            
+            // to work with json with SwifyJSON you must convert NSData to string and then back to NSData
+            let dataFromString = String(data: data!, encoding: NSUTF8StringEncoding)!.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
+            let jsonData = JSON(data: dataFromString!)
+            
+            if statusCode == OKStatusCode && jsonData[JSONStatusKey].boolValue {
+                onSuccessCallback()
+                return
+            }
+            
+            onErrorCallback()
+            
+        });
         
         task.resume()
         
         
     }
     
-    static func sendAppeal(completionHandler: (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void){
+    static func sendAppeal(onSuccessCallback: () -> Void, onErrorCallback: () -> Void) {
         
         let session = NSURLSession.sharedSession()
-
+        
         
         let boundary = "-BOUNDARY---RANDOM---BOUNDARY-"
         let beginBoundary = "--\(boundary)"
@@ -101,7 +127,7 @@ class ApiCaller {
             body.appendFormat("Content-Disposition: form-data; name=\"file\"; filename=\"picture.jpg\"\r\n")
             body.appendFormat("Content-Type: image/png\r\n")
             body.appendFormat("Content-Transfer-Encoding: binary\r\n\r\n")
-
+            
         }
         
         requestData.appendData(body.dataUsingEncoding(NSUTF8StringEncoding)!)
@@ -111,13 +137,34 @@ class ApiCaller {
             requestData.appendData("\r\n".dataUsingEncoding(NSUTF8StringEncoding)!)
         }
         requestData.appendData("\(endBoundary)".dataUsingEncoding(NSUTF8StringEncoding)!)
-                
+        
         let content:String = "multipart/form-data; beginBoundary=\(boundary)"
         request.setValue(content, forHTTPHeaderField: "Content-Type")
         request.setValue("\(requestData.length)", forHTTPHeaderField: "Content-Length")
         request.HTTPBody = requestData
         
-        let task = session.uploadTaskWithRequest(request, fromData: nil, completionHandler: completionHandler);
+        let task = session.uploadTaskWithRequest(request, fromData: nil, completionHandler: {(data, response, error) in
+            
+            guard let _:NSData = data, let _:NSURLResponse = response  where error == nil else {
+                onErrorCallback()
+                return
+            }
+            
+            let response = response as! NSHTTPURLResponse
+            let statusCode = response.statusCode
+            
+            // to work with json with SwifyJSON you must convert NSData to string and then back to NSData
+            let dataFromString = String(data: data!, encoding: NSUTF8StringEncoding)!.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
+            let jsonData = JSON(data: dataFromString!)
+            
+            if statusCode == OKStatusCode && jsonData[JSONStatusKey].boolValue {
+                onSuccessCallback()
+                return
+            }
+            
+            onErrorCallback()
+            
+        })
         
         task.resume()
     }
